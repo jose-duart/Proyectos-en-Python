@@ -1,0 +1,103 @@
+# Exercise 1:
+
+def diagonal_matriz (matriz):
+  vector_diagonal = list()
+  for x in range(len(matriz)):
+    vector_diagonal.append(matriz[x][x])
+  return vector_diagonal
+
+def leer (nf, nc):
+  matriz = []
+  for i in range(nf):
+    filas = list()
+    print(f"Fila: {i+1}")
+    for j in range(nc):
+      valor = int(input(f"Ingresa los valores de tu fila numero {i+1}"))
+      filas.append(valor)
+    matriz.append(filas)
+  for fila in matriz:
+    print(fila)
+  return(matriz)
+
+
+def main ():
+  nf = int(input("Ingrese el número de filas: "))
+  nc = int(input("Ingrese el número de columnas: "))
+  diagonal = diagonal_matriz(leer(nf, nc))
+  if nf == nc:
+    print(diagonal)
+  else:
+    print("error: no es una matriz cuadrada bro")
+
+
+main()
+
+# Exercise 2:
+
+def leer (nf, nc):
+
+  matriz = []
+  for i in range(nf):
+    filas = list()
+    print(f"Fila: {i+1}")
+    for j in range(nc):
+      valor = int(input(f"Ingresa los valores de tu fila numero {i+1}"))
+      filas.append(valor)
+    matriz.append(filas)
+  for fila in matriz:
+    print(fila)
+  return(matriz)
+
+
+def centroMatriz (matriz):
+  matrizSalida = list()
+
+  for i in range(1,len(matriz) - 1):
+    vector = []
+
+    for j in range(1,len(matriz[i]) - 1):
+      vector.append(matriz[i][j])
+
+    matrizSalida.append(vector)
+  return matrizSalida
+
+def main ():
+  nf = int(input("Ingrese el número de filas: "))
+  nc = int(input("Ingrese el número de columnas: "))
+  centro = centroMatriz(leer(nf, nc))
+  return(centro)
+
+main()
+
+# Excercise 3:
+
+def leer (nf, nc):
+
+  matriz = []
+  for i in range(nf):
+    filas = list()
+    print(f"Fila: {i+1}")
+    for j in range(nc):
+      valor = int(input(f"Ingresa los valores de tu fila numero {i+1}"))
+      filas.append(valor)
+    matriz.append(filas)
+  for fila in matriz:
+    print(fila)
+  return(matriz)
+
+
+def cambiareng (matriz):
+  ren1 = int(input("Numero de renglón a cambiar")) - 1
+  ren2 = int(input("Numero del segundo renlgón a cambiar")) - 1
+  for i in range(len(matriz[0])):
+    matriz[ren1][i], matriz[ren2][i] = matriz[ren2][i], matriz[ren1][i]
+  return(matriz)
+
+def main ():
+  nf = int(input("Ingrese el número de filas: "))
+  nc = int(input("Ingrese el número de columnas: "))
+  matriz_camb = cambiareng(leer(nf, nc))
+  return (matriz_camb)
+
+
+main()
