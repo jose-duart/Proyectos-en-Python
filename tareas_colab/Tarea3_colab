@@ -1,0 +1,80 @@
+# Menú de restaurante
+print("1: Pizza - 10$")
+print("2: Hamburguesa - 8$")
+print("3: Ensalada - 7$")
+print("4: Ir a cobro")
+
+pedido_total = 0
+while True:
+
+  orden = input("Seleccione su producto a ordenar")
+  if orden != "4":
+    cantidad = int(input("Seleccione la cantidad que llevará"))
+  else:
+    cantidad = 0
+  match orden:
+    case "1":
+      pedido_total = (pedido_total + 10) * cantidad
+      print("Selecciono la pizza: 10$")
+    case "2":
+      pedido_total = (pedido_total + 8) * cantidad
+      print("Selecciono la hamburguesa: 8$")
+    case "3":
+      pedido_total = (pedido_total + 7) * cantidad
+      print("Selecciono la ensalada: 7$")
+    case "4":
+      print(f"Su pedido es de un total de {pedido_total} dolares")
+      break
+    case _:
+      print("Ingrese una opción valida")
+
+# Promedio de horas + conversión a minutos
+
+horas = [2, 3, 4, 5, 16]
+horas_2 = [23, 24, 31, 23, 43]
+
+def tiempo_tot (*args):
+  for arg in args:
+    total = sum(arg)/len(arg)
+    return total
+
+variable = tiempo_tot(horas)
+
+hora_min = lambda x: x * 60
+hora_min(variable)
+
+# Promedio con *args
+
+values = [2,3,45,67,5,12]
+
+def promedio (*args):
+  for arg in args:
+   prom = sum(arg)/len(arg)
+   return prom
+
+horas = round(promedio(values),2)
+
+conv_min = lambda x: float(x) * 60
+
+print(conv_min(horas))
+
+# Filtrar valores fuera de rango
+
+from random import random
+promedios = [[2,3],[7,6],[3,7],[8,10],[34,23]]
+
+promedios_individuales = list()
+
+def sacar_promedio (*args):
+  for firstarg in args:
+    for element in firstarg:
+     prom = sum(element)/len(element)
+     promedios_individuales.append(prom)
+  return promedios_individuales
+
+sacar_promedio(promedios)
+
+horas = [2,3,45,67,44,12, -1, -34567]
+
+data_filtrada = filter(lambda x: x > 0 and x < 24 ,horas)
+print(f"Los datos sobrantes validos son: {list(data_filtrada)}")
