@@ -1,0 +1,33 @@
+#Calcular largo de una escalera
+import math
+angulo_grad = float(input("Ingrese el angulo que formará la escalera contra la pared"))
+altura_deseada = float(input("Ingrese la altura que desea alcanzar"))
+
+angulo_rad = (angulo_grad * 3.14)/180
+
+largo = altura_deseada/math.cos(angulo_rad)
+
+print("El largo de la escalera será", round(largo, 2))
+
+#Calcular diagonal de un rectángulo
+import math
+ancho= float(input("Ingrese el ancho del rectangulo"))
+largo= float(input("Ingrese el largo del rectangulo"))
+
+hipotenusa = math.sqrt(ancho**2 + largo**2)
+
+print("La diagonal del rectangulo es", round(hipotenusa, 2))
+
+#Calcular población final
+import math
+def calculo_poblacion_final(poblacion_inicial, tiempo, tasa_crecimiento):
+  poblacion_final = poblacion_inicial * math.exp(tasa_crecimiento * tiempo)
+  return math.trunc(poblacion_final)
+
+poblacion_inicial = int(input("Ingresar población inicial: "))
+tiempo = int(input("Ingresar tiempo (años): "))
+tasa_crecimiento = float(input("Ingresar la tasa de crecimiento: "))
+
+poblacion_final = calculo_poblacion_final(poblacion_inicial, tiempo, tasa_crecimiento)
+
+print("La población final es:", poblacion_final)
