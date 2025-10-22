@@ -1,0 +1,166 @@
+# Exercise 1:
+import sys
+
+def calcular_determinante(matriz: list[list[int]]) -> int: #se crea una función con el nombre "calcular_determinante" que recibe una matriz como parametro de entrada y se asegura de devolver un entero
+    producto_ad = matriz[0][0] * matriz[1][1] # se obtienen las variables "producto_ad" y "producto_cb" de forma especifica para despues restarlas y calcular el diferencial de la matriz basado en sus valores
+    producto_cb = matriz[1][0] * matriz[0][1]
+
+    return producto_ad - producto_cb #se retorna el entero de esa resta
+
+def construir_matriz() -> list[list[int]] | None: # Se crea la función de nombre "construir_matriz"
+    print("Ingrese los valores para la primera fila (2 valores, separados por espacios):") #se imprime una solicitud al usuario
+    fila1 = [int(val) for val in input().split()] #se asegura que el valor obtenido sea un entero y se inicia un ciclo for que da al usuario la posibilidad de ingresar dos valores separados por un espacio
+    #esta lista de valores se asigna a la variable "fila1"
+    print("Ingrese los valores para la segunda fila (2 valores, separados por espacios):")
+    fila2 = [int(val) for val in input().split()] #se repite el proceso para una segunda fila
+
+    if len(fila1) != 2 or len(fila2) != 2: # se asegura que la longitud de las filas no sea diferente a 2
+        print("Matrix is not a 2x2 matrix.") # si es así se imprime el mensaje de error y retorna un None
+        return None
+
+    return [fila1, fila2] # se retornan ambas filas obtenidas en la función
+
+def principal(): #se define la función principal del codigo con el nombre "principal"
+    print("--- Calculadora del Determinante de una matriz 2x2 ---") #se imprime el proposito de la función en un string
+
+    matriz = construir_matriz() #se asigna el llamado de la función "construir_matriz" a una variable llamada "matriz"
+
+    if matriz is not None: #se asegura que la matriz no de como resultado un None para proseguir con las instrucciones
+        determinante = calcular_determinante(matriz) #se asigna el llamado de la función "calcular_determinante" con el parametro matriz (la cual es la variable correspondiente a la función "construir_matriz")
+        #esto hará que se calcule el determinante de la matriz generada en un principio por el usuario
+        print(f"\nEl determinante de la matriz {matriz} es: {determinante}") # se imprime un mensaje que contiene el determinante y la matriz del que salió
+    else:
+        pass #si la matriz da como resultado None en primer lugar se salta el proceso
+
+if __name__ == "__main__": #esta sección del código se asegura que solo se corra la función principal en el archivo de python original y no en uno en el que se importe el script
+    principal()
+
+
+#Exercise 2:
+
+
+import sys
+
+def es_primo(n: int) -> bool: #se crea la función con nombre "es_primo" y parametros de un número entero asegurandose que el return sea un booleano
+    if n <= 1:
+        return False # si el numero es menor o igual a 1 se retorna un booleano False
+    if n <= 3:
+        return True # si el numero es menor o igual a 3 se da retorna un booleano True
+    if n % 2 == 0 or n % 3 == 0: # si el modulo (residuo de división) del número con 2 o 3 es igual a 0 retorna un False
+        return False
+
+    i = 5 # se declara el contador i igual a 5
+    while i * i <= n: # se comienza un ciclo while que seguirá mientras la multiplicaciñon de i por i sea menor o igual al número
+        if n % i == 0 or n % (i + 2) == 0:
+            return False # se declará la condición de regresar un booleano False si el modulo del número con i o el modulo del número con i + 2 es igual a 0. Todo dentro del ciclo while
+        i += 6 #se suma 6 al contador i. Todo dentro del while
+    return True # cuándo el while se rompe se retorna un booleano True
+
+def contar_primos_por_fila(matriz: list[list[int]]) -> list[int]: #se crea la función de nombre "contar_primos_por_fila" que espera una matriz como entrada y se asegura de retornar una lista de enteros
+    conteo_primos = [] #declaramos la variable "conteo_primos" como una lista vacia
+
+    for fila in matriz: #se inicia un ciclo for en el que, leera las filas dentro de la matriz y, mientras haya una fila dentro de la matriz el contador "conteo_fila" se declara igual a 0
+        conteo_fila = 0
+        for numero in fila: #dentro del loop anterior se inicia un nuevo ciclo for que lee los valores dentro de la fila leida anteriormente
+            if es_primo(numero): # se aplica la función "es_primo" a los números leidos y si esta da un True se suma 1 al contador "conteo_fila"
+                conteo_fila += 1
+
+        conteo_primos.append(conteo_fila) # dentro del for principal se añade el contador "conteo_fila" a la lista "conteo_primos" por cada iteración completada
+
+    return conteo_primos #se retorna la lista "conteo_primos"
+
+def principal(): #se crea la función principal de código que se encargará de correr a las otras dos
+    print(">>> ", end="") #se encarga de imprimir >>> en la misma linea de cada input sin saltarse lineas
+    num_filas = int(input("Ingrese el número de filas de la matriz: ")) # se declara un input de entero que pide el numero de filas que el usuario desea y lo guarda en la variable "num_filas"
+
+    print(">>> ", end="") #se encarga de imprimir >>> en la misma linea de cada input sin saltarse lineas
+    num_columnas = int(input("Ingrese el número de columnas de la matriz: "))# se declara un input de entero que pide el numero de columnas que el usuario desea y lo guarda en la variable "nume_columnas"
+
+    if num_filas <= 0 or num_columnas <= 0: #se asegura que si el número de filas o columnas es menor o igual a cero se imprimirá un mensaje de error
+        print("Error: El número de filas y columnas debe ser positivo.")
+        return
+
+    print("\n--- Ingrese los datos de la matriz (un entero por línea) ---") #Se solicita al usuario que ingrese los datos de la matriz
+    matriz = [] #se crea la variable "matriz" que es una lista vacia
+
+    for i in range(num_filas): #se inicia un ciclo for que verificará si i se encuentra en el rango determinado por el número de filas
+        fila = [] #lista vacia bajo la variable "fila"
+        print(f"Fila {i+1}:") #mientras el for siga activo se imprimirá el mensaje "Fila y el resultado del contador i + 1"
+        for j in range(num_columnas): #se inicia un for anidado que medira el contador j en el rango determinado por el número de columnas
+            print(">>> ", end="")#se encarga de imprimir >>> en la misma linea de cada input sin saltarse lineas
+            valor = int(input()) #se pide un input de entero y se almacena en la variable "valor"
+            fila.append(valor) #se agrega el valor a la lista "fila"
+        matriz.append(fila) #dentro del primer for se agrega esta fila de valores a la lista "matriz" por cada iteración del for
+
+    resultado = contar_primos_por_fila(matriz) #se le otorga la matriz creada a la función "contar_primos_por_fila" y se asigna el resultado a la variable "resultado"
+
+    print("\n--- Matriz Leída ---")#impresión de mensaje
+    for fila in matriz:#se lee la matriz imprimiendo fila por fila
+        print(fila)
+
+    print("\n--- Salida ---")#impresión de mensaje
+    print(f"Lista de cantidad de primos por fila: {resultado}") #se imprime la variable "resultado"
+
+if __name__ == "__main__": #esta sección del código se asegura que solo se corra la función principal en el archivo de python original y no en uno en el que se importe el script
+    principal()
+
+
+Exercise 3:
+
+
+def crear_matriz_consecutiva(): #se crea la función "crear_matriz_consecutiva" sin declarar valores especificos de entrada
+    """
+    Crea una matriz de n filas y m columnas llena con números consecutivos
+    por fila, comenzando desde 1.
+    """
+    try: #try validará posibles errores al principio de lo que se lleve acabo dentro de la función
+        # --- Lectura y Validación de n (filas) ---
+        print(">>> ", end="")#se encarga de imprimir >>> en la misma linea de cada input sin saltarse lineas
+        n = int(input("Ingrese el número de filas (n, debe ser >= 2): ")) #Se pide un input de entero al usuario que define el número de filas y se guarda en la variable "n"
+
+        # Validación de la condición n >= 2
+        if n < 2: #si el numero de filas es menor a 2 se imprime un mensaje de error
+            print("Error")
+            return
+
+        # --- Lectura y Validación de m (columnas) ---
+        print(">>> ", end="")#se encarga de imprimir >>> en la misma linea de cada input sin saltarse lineas
+        m = int(input("Ingrese el número de columnas (m, debe ser >= 2): ")) #Se pide un input de entero al usuario que define le número de columnas y se guarda en la variable "m"
+
+        # Validación de la condición m >= 2
+        if m < 2: # si el número de columnas es menor a 2 se imprime un mensaje de error
+            print("Error")
+            return
+
+    except ValueError: #si llega a haber un error de Valor (no se imprime el tipo de valor deseado)
+        # Si el usuario ingresa un valor no numérico se imprime un mensaje de error
+        print("Error")
+        return
+
+    # --- Creación de la Matriz ---
+    matriz = [] #se crea la lista vacia llamada "matriz"
+
+    # El contador global que se reinicia a 1 al inicio de cada fila
+    contador = 1
+
+    # Bucle para recorrer las 'n' filas
+    for i in range(n): #el bucle seguira mientras i esté en el rango del número de filas declarado en la variable "n"
+        fila = [] #se crea la lista vacia llamada "fila"
+        # El contador debe comenzar en 1 para CADA fila
+        contador = 1
+
+        # Bucle para llenar las 'm' columnas de la fila actual
+        for j in range(m): #se crea un ciclo for anidado que sigue mientras j este en el rango del número de columnas declarado por el usuario en la variable "m"
+            fila.append(contador) #agrega el contador a cada fila recorrida
+            contador += 1 # Incrementar para el siguiente elemento de la fila
+
+        # Agrega la fila completa a la matriz
+        matriz.append(fila)
+
+    # --- Salida ---
+    # Imprimir la matriz resultante como una lista de listas
+    print(matriz)
+
+# Ejecutar el programa
+if __name__ == "__main__": #esta sección del código se asegura que solo se corra la función principal en el archivo de python original y no en uno en el que se importe el script
+    crear_matriz_consecutiva()
