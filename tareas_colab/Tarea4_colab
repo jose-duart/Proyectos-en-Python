@@ -1,0 +1,163 @@
+# 1. Analizador de una lista entera (todo-en-uno de una sola lista)
+digitos = list()
+
+while True:
+  elemento = input("Selecciona elementos para tu lista. Escribe salir para terminar tu elección")
+
+  if elemento == "salir":
+    break
+
+  elif int(elemento) < 0:
+    print("Que sea mayor que cero bro")
+
+  else:
+    digitos.append(elemento)
+    print(f"Se ha agregado el elemento {elemento} a la lista")
+    print(f"Lista actual: {digitos}")
+
+digitos_int = list(map(int, digitos))
+
+pares = list()
+impares = list()
+lista_cuadrada = list()
+
+def lectura_listas (*args):
+  for arg in args:
+    for num in arg:
+      print(num)
+
+lectura_listas(digitos_int)
+
+def lectura_listas_inverso (*args):
+  for arg in args:
+    for num in arg[::-1]:
+      print(num)
+
+lectura_listas_inverso(digitos_int)
+
+promedio = lambda x: sum(x)/len(x)
+
+print(f"El promedio de la lista es: {promedio(digitos_int)}")
+
+def par_o_impar (*args):
+  for arg in args:
+    for value in arg:
+      if value % 2 == 0:
+        pares.append(value)
+
+      elif value % 2 == 1:
+        impares.append(value)
+
+
+par_o_impar(digitos_int)
+
+print(f"Lista de pares: {pares}")
+print((f"Lista de impares: {impares}"))
+
+def cuadrado (*args):
+  for arg in args:
+    for item in arg:
+     valor_quad = item ** 2
+     lista_cuadrada.append(valor_quad)
+  print((f"Lista de cuadrados: {lista_cuadrada}"))
+
+cuadrado(digitos_int)
+
+digitos_ordenados = sorted(digitos_int)
+print(f"Lista ordenada de menor a mayor: {digitos_ordenados}")
+
+# 2. Dúo de listas: suma por posición, ordenación y sin duplicados Descripción
+
+lista_1 = list()
+lista_2 = list()
+
+while True:
+  elementos = input("Selecciona elementos para tu lista. Escribe salir para terminar tu elección")
+  if elementos == "salir":
+    break
+
+  else:
+    lista_1.append(elementos)
+
+while True:
+  elementos = input("Selecciona elementos para tu lista 2. Escribe salir para terminar tu elección")
+  if elementos == "salir":
+    break
+
+  else:
+    lista_2.append(elementos)
+
+lista_1_int = list(map(int, lista_1))
+lista_2_int = list(map(int, lista_2))
+
+def lsuma (k,j,i):
+    suma = k[i] + j[i]
+    return suma
+
+print(lsuma(lista_1_int,lista_2_int,0))
+
+sumlist = lista_1_int + lista_2_int
+sumlist_orden = sorted(sumlist)
+print(sumlist_orden)
+
+lunica = list(set(sumlist_orden))
+print(lunica)
+
+# 3. Menú de funciones: dígitos faltantes, Fibonacci y combinación de strings Descripción
+
+print("1. Valores faltantes  2. Serie de fibonacci   3. Listas de Strings   4. Salir")
+
+seleccion = input("¿Qué función desea activar?")
+
+match seleccion:
+  case "1":
+
+    valores = list()
+    digits = [1,2,3,4,5,6,7,8,9]
+
+    while True:
+      elementos = input("Diga valores del 1 al 9, escriba salir para terminar la selección")
+
+      if elementos == "salir":
+        break
+
+      if int(elementos) < 0 or int(elementos) > 10:
+        print("Siga el parametro de 1 al 9 por favor")
+
+      else:
+        valores.append(elementos)
+
+    valores_int = list(map(int,valores))
+
+    for valor in valores_int:
+      print(valor)
+
+    for valor in valores_int:
+      digits.remove(valor)
+
+    print(f"Los valores dados por el usuario son: {valores_int} y los valores que faltaron son: {digits}")
+
+  case "2":
+
+    def calc_fib (x):
+
+      fib = [0,1]
+
+      if x <= 0:
+        return "Elige un numero entero"
+      else:
+        for i in range(2, x):
+          fib_num = fib[i-1] + fib[i-2]
+          fib.append(fib_num)
+        return fib
+
+    a = int(input("¿Cuántos digitos deseas generar?"))
+    print(calc_fib(a))
+
+
+  case "3":
+
+
+
+  case "4":
+    print("Sesión de código terminada")
