@@ -1,0 +1,60 @@
+#Conversor a centímetros
+valor_num = int(input("Ingrese el valor númerico"))
+sist_medicion = int(input("Ingrese a que medida convertir: 1 –- pies a cm, 2 -- pulgadas a cm, 3 –- yardas a cm): "))
+
+def conversión_pies (valor):
+  return valor * 30.48
+
+def conversión_pulgadas (valor):
+  return valor * 2.54
+
+def conversión_yardas (valor):
+  return valor * 91.44
+
+if valor_num <= 0:
+  print("Error")
+
+elif sist_medicion == 1:
+  print(conversión_pies(valor_num))
+
+elif sist_medicion == 2:
+    print(conversión_pulgadas(valor_num))
+
+elif sist_medicion == 3:
+    print(conversión_yardas(valor_num))
+
+else:
+  print("Error")
+
+#Area y Volumen de un cilindro
+altura = int(input("Ingrese la altura del cilindro "))
+radio = int(input("Ingrese el radio del cilindro "))
+
+def area_cilindro (altura, radio):
+  return 2 * 3.1416 * radio * (radio + altura)
+
+def volumen_cilindro (altura, radio):
+  return 3.1416 * radio**2 * altura
+
+print(f"El area del cilindro es = {round(area_cilindro(altura, radio), 2)}")
+print(f"El volumen del cilindro es = {round(volumen_cilindro(altura, radio), 2)}")
+
+#Calcular grado
+grado = float(input("Ingrese el grado"))
+
+def calcula_grado (grado):
+  if grado > 0.9:
+    return "A"
+  elif grado > 0.8:
+    return "B"
+  elif grado > 0.7:
+    return "C"
+  elif grado > 0.6:
+    return "D"
+  elif grado <= 0.6:
+    return "F"
+
+if grado > 0 and grado < 1:
+  print(calcula_grado(grado))
+else:
+  print("Score incorrecto")
