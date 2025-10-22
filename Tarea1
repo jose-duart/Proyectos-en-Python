@@ -1,0 +1,184 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOTYVppMYI1MXAMdCHFuqXI",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/jose-duart/Proyectos-en-Python/blob/main/Tarea1\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "**Convertidor a centímetros**"
+      ],
+      "metadata": {
+        "id": "OfwyWJHmBaTl"
+      }
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "XGAPoKcB4fQP",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "7747a803-1347-4403-ba50-8dc1306f4e89"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Ingrese el valor númerico3\n",
+            "Ingrese la opción a ejecutar (1 – pies a cm, 2 - pulgadas a cm, 3 – yardas a cm): 4\n",
+            "Error\n"
+          ]
+        }
+      ],
+      "source": [
+        "valor_num = int(input(\"Ingrese el valor númerico\"))\n",
+        "sist_medicion = int(input(\"Ingrese a que medida convertir: 1 –- pies a cm, 2 -- pulgadas a cm, 3 –- yardas a cm): \"))\n",
+        "\n",
+        "def conversión_pies (valor):\n",
+        "  return valor * 30.48\n",
+        "\n",
+        "def conversión_pulgadas (valor):\n",
+        "  return valor * 2.54\n",
+        "\n",
+        "def conversión_yardas (valor):\n",
+        "  return valor * 91.44\n",
+        "\n",
+        "if valor_num <= 0:\n",
+        "  print(\"Error\")\n",
+        "\n",
+        "elif sist_medicion == 1:\n",
+        "  print(conversión_pies(valor_num))\n",
+        "\n",
+        "elif sist_medicion == 2:\n",
+        "    print(conversión_pulgadas(valor_num))\n",
+        "\n",
+        "elif sist_medicion == 3:\n",
+        "    print(conversión_yardas(valor_num))\n",
+        "\n",
+        "else:\n",
+        "  print(\"Error\")"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "**Cilindro área volumen**"
+      ],
+      "metadata": {
+        "id": "1_0tRpHMBckG"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "altura = int(input(\"Ingrese la altura del cilindro \"))\n",
+        "radio = int(input(\"Ingrese el radio del cilindro \"))\n",
+        "\n",
+        "def area_cilindro (altura, radio):\n",
+        "  return 2 * 3.1416 * radio * (radio + altura)\n",
+        "\n",
+        "def volumen_cilindro (altura, radio):\n",
+        "  return 3.1416 * radio**2 * altura\n",
+        "\n",
+        "print(f\"El area del cilindro es = {round(area_cilindro(altura, radio), 2)}\")\n",
+        "print(f\"El volumen del cilindro es = {round(volumen_cilindro(altura, radio), 2)}\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "wEh-pKVYBx5d",
+        "outputId": "e04183cf-9907-4519-8a58-a8b0b46bcd32"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Ingrese la altura del cilindro 8\n",
+            "Ingrese el radio del cilindro 2\n",
+            "El area del cilindro es = 125.66\n",
+            "El volumen del cilindro es = 100.53\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "**Calcula Grado**"
+      ],
+      "metadata": {
+        "id": "Mxn_RxrkDw4n"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "grado = float(input(\"Ingrese el grado\"))\n",
+        "\n",
+        "def calcula_grado (grado):\n",
+        "  if grado > 0.9:\n",
+        "    return \"A\"\n",
+        "  elif grado > 0.8:\n",
+        "    return \"B\"\n",
+        "  elif grado > 0.7:\n",
+        "    return \"C\"\n",
+        "  elif grado > 0.6:\n",
+        "    return \"D\"\n",
+        "  elif grado <= 0.6:\n",
+        "    return \"F\"\n",
+        "\n",
+        "if grado > 0 and grado < 1:\n",
+        "  print(calcula_grado(grado))\n",
+        "else:\n",
+        "  print(\"Score incorrecto\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Q4G_inBZDx-9",
+        "outputId": "7be66004-0560-48b5-cf78-699856159245"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Ingrese el grado234\n",
+            "Score incorrecto\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
